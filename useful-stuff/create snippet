@@ -1,0 +1,21 @@
+<h1>New BLAH</h1>
+<p><form:errors path="_____object_____.*"/></p>
+<form:form action="/_____object_____" method="post" modelAttribute="_____object_____">
+    <p>
+        <form:label path="____field1____">BLAH</form:label>
+        <form:input path="____field1____"/>
+    </p>
+    <p>
+        <form:label path="____field2____">BLAH</form:label>
+        <form:textarea path="____field2____"/>
+    </p>
+    <p>
+        <form:label path="____field3____">BLAH</form:label>
+        <form:input path="____field3____"/>
+    </p>
+    <p>
+        <form:label path="____field4____">BLAH</form:label>
+        <form:input type="number" path="____field4____"/>
+    </p>    
+    <input type="submit" value="Submit"/>
+</form:form>  

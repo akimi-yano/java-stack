@@ -1,0 +1,47 @@
+*************************
+replace below with all select.
+demo-4-0.0.1-SNAPSHOT.war
+/Users/pjuser/desktop/aws/springProject.pem
+/Users/pjuser/Documents/workspace-spring-tool-suite-4-4.5.1.RELEASE/demo-4/target/demo-4-0.0.1-SNAPSHOT.war
+ubuntu@ec2-13-52-76-28.us-west-1.compute.amazonaws.com
+*************************
+// For Main Application file
+@Bean
+public TomcatServletWebServerFactory servletContainer() {
+    TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+    Connector ajpConnector = new Connector("AJP/1.3");
+    ajpConnector.setPort(9090);
+    ajpConnector.setSecure(false);
+    ajpConnector.setAllowTrace(false);
+    ajpConnector.setScheme("http");
+    tomcat.addAdditionalTomcatConnectors(ajpConnector);
+    return tomcat;
+}
+*********************************
+Maven update project
+run as maven install
+*********************************
+// Cloud Commands
+sudo apt-get install mysql-server
+
+mysql -u root -p
+sudo apt-get install apache2
+*********************************
+// Use inside local terminal
+scp -i /Users/pjuser/desktop/aws/springProject.pem /Users/pjuser/Documents/workspace-spring-tool-suite-4-4.5.1.RELEASE/demo-4/target/demo-4-0.0.1-SNAPSHOT.war ubuntu@ec2-13-52-76-28.us-west-1.compute.amazonaws.com:~/
+*********************************
+sudo mkdir /var/springApp
+sudo mv ~/demo-4-0.0.1-SNAPSHOT.war /var/springApp/
+sudo a2enmod proxy
+sudo a2enmod proxy_ajp
+cd /etc/apache2/sites-available
+sudo vim 000-default.conf
+********************************
+ProxyPass / ajp://localhost:9090/
+ProxyPassReverse / ajp://localhost:9090/
+********************************
+sudo service apache2 restart
+sudo apt-get install default-jdk
+********************************
+cd /var/springApp
+java -jar demo-4-0.0.1-SNAPSHOT.war
