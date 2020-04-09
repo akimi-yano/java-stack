@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<plist version="1.0">
+
+<dict>
+	<key>CFBundleExecutable</key>
+		<string>SpringToolSuite4</string>
+	<key>CFBundleGetInfoString</key>
+		<string>Eclipse 4.15 for Mac OS X, Copyright IBM Corp. and others 2002, 2019. All rights reserved.</string>
+	<key>CFBundleIconFile</key>
+		<string>sts4.icns</string>
+	<key>CFBundleIdentifier</key>
+		<string>org.springframework.boot.ide.branding.sts4</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+	<key>CFBundleName</key>
+		<string>SpringToolSuite4</string>
+	<key>CFBundlePackageType</key>
+		<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+		<string>4.6.0</string>
+	<key>CFBundleSignature</key>
+		<string>????</string>
+	<key>CFBundleVersion</key>
+		<string>4.6.0.202003181317-RELEASE</string>
+	<key>NSHighResolutionCapable</key>
+		<true/>
+	<key>CFBundleDevelopmentRegion</key>
+		<string>English</string>
+	<key>Eclipse</key>
+		<array>
+			<!-- to use a specific Java version (instead of the platform's default) uncomment one of the following options,
+					or add a VM found via $/usr/libexec/java_home -V
+				<string>-vm</string><string>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Commands/java</string>
+				<string>-vm</string><string>/Library/Java/JavaVirtualMachines/1.8.0.jdk/Contents/Home/bin/java</string>
+			-->
+			<string>-vm</string><string>/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/bin/java</string>
+			<string>-keyring</string>
+      <string>~/.eclipse_keyring</string>
+		</array>
+<key>CFBundleDisplayName</key>
+    <string>SpringToolSuite4</string>
+  </dict>
+
+</plist>

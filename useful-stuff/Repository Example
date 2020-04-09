@@ -1,0 +1,4 @@
+@Repository
+public interface CoffeeRepo extends CrudRepository<Coffee, Long>{
+	List<Coffee> findAll();
+}

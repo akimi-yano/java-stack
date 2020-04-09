@@ -1,0 +1,8 @@
+<form:select path="products">
+   <c:forEach var="item" items="${products}">
+         <c:if test = "${category.products.contains(item) == false}">
+   
+   	  <form:option value="${item.id}" label="${item.name}"/>
+   	  </c:if>
+   </c:forEach>
+</form:select>

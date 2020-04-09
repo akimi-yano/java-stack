@@ -1,0 +1,16 @@
+@Service
+public class CoffeeServ {
+	private final CoffeeRepo coffeeRepo;
+	public CoffeeServ(CoffeeRepo coffeeRepo) {
+		this.coffeeRepo = coffeeRepo;
+	}
+	
+	public Coffee findOne(Long id) {
+		Optional<Coffee> x = coffeeRepo.findById(id);
+		if(x.isPresent()) {
+			return x.get();
+		} else {
+			return null;
+		}
+	}
+}
