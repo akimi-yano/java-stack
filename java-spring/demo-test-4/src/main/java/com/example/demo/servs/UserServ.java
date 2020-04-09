@@ -21,8 +21,12 @@ public class UserServ {
         return urepo.save(user);
     }
 	
-	public Optional<User> findOne(Long id) {
-    	return urepo.findById(id);
+	public User findOne(Long id) {
+		Optional<User> maybeU = urepo.findById(id);
+		if (maybeU.isPresent()) {
+			return maybeU.get();
+		}
+		return null;
     }
 	
 	public boolean authenticateUser(String email, String password) {

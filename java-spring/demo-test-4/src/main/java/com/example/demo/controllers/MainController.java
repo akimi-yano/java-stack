@@ -80,9 +80,9 @@ public class MainController {
 	@GetMapping("/dash")
 	public String dashboard(HttpSession session, Model model) {
 		Long userid = (Long) session.getAttribute("userid");
-		Optional<User> maybeU = userv.findOne(userid);
+		User u = userv.findOne(userid);
 
-		model.addAttribute("user", maybeU.isPresent() ? maybeU.get() : new User());
+		model.addAttribute("user", u);
 		List<Task> mylist = trepo.findAll();
 		model.addAttribute("tasks",mylist);
 		return "dashboard.jsp";
@@ -99,8 +99,8 @@ public class MainController {
 		if(result.hasErrors()) {
 			return "new.jsp";
 		} else {
-			Optional<User> maybeU = userv.findOne((Long) session.getAttribute("userid"));
-			task.setCreator(maybeU.isPresent() ? maybeU.get() : new User());
+			User u = userv.findOne((Long) session.getAttribute("userid"));
+			task.setCreator(u);
 			trepo.save(task);
 			return "redirect:/dash";
 		}
