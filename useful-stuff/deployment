@@ -14,6 +14,7 @@ public TomcatServletWebServerFactory servletContainer() {
     ajpConnector.setSecure(false);
     ajpConnector.setAllowTrace(false);
     ajpConnector.setScheme("http");
+	((AbstractAjpProtocol) ajpConnector.getProtocolHandler()).setSecretRequired(false);
     tomcat.addAdditionalTomcatConnectors(ajpConnector);
     return tomcat;
 }
@@ -45,3 +46,25 @@ sudo apt-get install default-jdk
 ********************************
 cd /var/springApp
 java -jar demo-4-0.0.1-SNAPSHOT.war
+********************************
+cd /etc/systemd/system
+sudo touch auth.service
+sudo vim auth.service
+********************************
+[Unit]
+Description=Auth application using Spring Boot
+After=syslog.target
+[Service]
+User=ubuntu
+ExecStart=/usr/bin/java -jar /var/springApp/demo-4-0.0.1-SNAPSHOT.war
+SuccessExitStatus=143
+[Install]
+WantedBy=multi-user.target
+********************************
+sudo systemctl daemon-reload
+sudo systemctl enable auth.service
+sudo systemctl start auth
+
+sudo systemctl stop auth
+sudo systemctl restart auth
+systemctl status auth
