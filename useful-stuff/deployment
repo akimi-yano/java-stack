@@ -1,9 +1,9 @@
 *************************
 replace below with all select.
-demo-4-0.0.1-SNAPSHOT.war
-/Users/pjuser/desktop/aws/springProject.pem
-/Users/pjuser/Documents/workspace-spring-tool-suite-4-4.5.1.RELEASE/demo-4/target/demo-4-0.0.1-SNAPSHOT.war
-ubuntu@ec2-13-52-76-28.us-west-1.compute.amazonaws.com
+great-ideas-0.0.1.war
+/Users/aki/Desktop/pem_key/django_pem.pem
+/Users/aki/Desktop/Github\ Repositories/java/java-spring/great-ideas/target/great-ideas-0.0.1.war
+ubuntu@ec2-54-193-98-15.us-west-1.compute.amazonaws.com
 *************************
 // For Main Application file
 @Bean
@@ -26,13 +26,18 @@ run as maven install
 sudo apt-get install mysql-server
 
 mysql -u root -p
+*********************************
+// create database in mysql
+create database mytestdb;
+exit;
+*********************************
 sudo apt-get install apache2
 *********************************
 // Use inside local terminal
-scp -i /Users/pjuser/desktop/aws/springProject.pem /Users/pjuser/Documents/workspace-spring-tool-suite-4-4.5.1.RELEASE/demo-4/target/demo-4-0.0.1-SNAPSHOT.war ubuntu@ec2-13-52-76-28.us-west-1.compute.amazonaws.com:~/
+scp -i /Users/aki/Desktop/pem_key/django_pem.pem /Users/aki/Desktop/Github\ Repositories/java/java-spring/great-ideas/target/great-ideas-0.0.1.war ubuntu@ec2-54-193-98-15.us-west-1.compute.amazonaws.com:~/
 *********************************
 sudo mkdir /var/springApp
-sudo mv ~/demo-4-0.0.1-SNAPSHOT.war /var/springApp/
+sudo mv ~/great-ideas-0.0.1.war /var/springApp/
 sudo a2enmod proxy
 sudo a2enmod proxy_ajp
 cd /etc/apache2/sites-available
@@ -45,21 +50,21 @@ sudo service apache2 restart
 sudo apt-get install default-jdk
 ********************************
 cd /var/springApp
-java -jar demo-4-0.0.1-SNAPSHOT.war
+java -jar great-ideas-0.0.1.war
 ********************************
 cd /etc/systemd/system
 sudo touch auth.service
 sudo vim auth.service
 ********************************
-[Unit]
-Description=Auth application using Spring Boot
-After=syslog.target
-[Service]
-User=ubuntu
-ExecStart=/usr/bin/java -jar /var/springApp/demo-4-0.0.1-SNAPSHOT.war
-SuccessExitStatus=143
-[Install]
-WantedBy=multi-user.target
+    [Unit]
+    Description=Auth application using Spring Boot
+    After=syslog.target
+    [Service]
+    User=ubuntu
+    ExecStart=/usr/bin/java -jar /var/springApp/great-ideas-0.0.1.war
+    SuccessExitStatus=143
+    [Install]
+    WantedBy=multi-user.target
 ********************************
 sudo systemctl daemon-reload
 sudo systemctl enable auth.service

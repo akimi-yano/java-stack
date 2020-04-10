@@ -13,19 +13,23 @@
 <div style="width: 500px; margin: 50px 600px">
 <a class="btn btn-primary" href="/logout">Logout</a>
 <a class="btn btn-primary" href="/dash">Go back</a>
-<h1>Create a new show</h1>
+<h1>Edit ${show.title}</h1>
 <p><form:errors path="show.*"/></p>
-<form:form action="/new" method="post" modelAttribute="show">
+<form:form action="/edit/${show.id}" method="post" modelAttribute="show">
     <p>
         <form:label path="title">Title</form:label>
-        <form:input type="text" path="title" placeholder="Title"/>
+        <form:input type="text" path="title"/>
     </p>
-    <p>
+        <p>
         <form:label path="network">Network</form:label>
-        <form:input type="text" path="network" placeholder="Network"/>
+        <form:input type="text" path="network"/>
     </p>
-    <input class="btn btn-primary" type="submit" value="Create"/>
+
+    <input class="btn btn-primary" type="submit" value="Update"/>
 </form:form>  
-</div>
+
+ <a style="margin: 10px 0" class="btn btn-primary" href="/delete/${show.id}">Delete</a> 
+ </div>
 </body>
 </html>
+

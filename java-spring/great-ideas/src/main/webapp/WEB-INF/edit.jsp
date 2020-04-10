@@ -22,7 +22,7 @@
     <input type="submit" value="Update"/>
 </form:form>  
 
- <a href="/delete/${item.id}">Delete</a> 
+ <a href="/delete/${idea.id}">Delete</a> 
 </body>
 </html>
 

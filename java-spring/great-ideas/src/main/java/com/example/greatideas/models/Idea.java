@@ -38,7 +38,7 @@ public class Idea {
 	private Date updatedAt;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="crator_id")
+	@JoinColumn(name="creator_id")
 	private User creator;
 	
     @ManyToMany(fetch=FetchType.LAZY)
@@ -47,7 +47,7 @@ public class Idea {
     		joinColumns=@JoinColumn(name="liked_ideas_id"),
     		inverseJoinColumns=@JoinColumn(name="liked_users_id")
     		)
-    private List<User> likes;
+    private List<User> liked_users;
     
 
 	public Idea() {
@@ -104,11 +104,11 @@ public class Idea {
 	}
 
 	public List<User> getLiked_users() {
-		return likes;
+		return liked_users;
 	}
 
 	public void setLiked_users(List<User> liked_users) {
-		this.likes = liked_users;
+		this.liked_users = liked_users;
 	}
 
 
