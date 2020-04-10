@@ -13,6 +13,8 @@
 	<a href="/logout">Logout</a>
 	<a href="/new">Create a new idea</a>
 	<p>Ideas</p>
+	<a href="/dash?order=likesAscending">Low Likes</a>
+	<a href="/dash?order=likesDescending">High Likes</a>
 	<table>
     <thead>
         <tr>

@@ -1,10 +1,14 @@
 package com.example.greatideas.controllers;
 
+import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -83,12 +87,28 @@ public class MainController {
 	
 	
 	@GetMapping("/dash")
-	public String dashboard(HttpSession session, Model model) {
+	public String dashboard(@RequestParam("order") Optional<String> maybeOrderType,
+			HttpSession session, Model model) {
 		Long userid = (Long) session.getAttribute("userid");
 		User u = userv.findOne(userid);
 
 		model.addAttribute("user", u);
+//		List<Idea> mylist = irepo.findAll(Sort.by(Sort.Direction.ASC, "likedUsers"));
 		List<Idea> mylist = irepo.findAll();
+		// lambda expression to sort ideas by likes
+		if (maybeOrderType.isPresent()) {
+			String orderType = maybeOrderType.get();
+			if (orderType.equals("likesAscending")) {
+				mylist.sort(
+						(Idea a, Idea b)->a.getLiked_users().size() - b.getLiked_users().size()
+						);
+				}
+			else if (orderType.equals("likesDescending")) {
+				mylist.sort(
+						(Idea a, Idea b)->b.getLiked_users().size() - a.getLiked_users().size()
+						);
+				}
+		}
 		model.addAttribute("ideas",mylist);
 		return "dashboard.jsp";
 	}
@@ -106,6 +126,11 @@ public class MainController {
 		} else {
 			User u = userv.findOne((Long) session.getAttribute("userid"));
 			idea.setCreator(u);
+			
+			//make a new list to add the creator to like the idea by default
+			ArrayList<User> newList = new ArrayList<User>();
+			newList.add(u);
+			idea.setLiked_users(newList);
 			irepo.save(idea);
 			return "redirect:/dash";
 		}
@@ -119,7 +144,7 @@ public class MainController {
 	
 	@GetMapping("/edit/{idea_id}")
 	public String editPage(Model model, @PathVariable("idea_id") Long ideaId) {
-		// prepopulation 
+		// populate  the  value beforehand
 		Idea i = iserv.findOne(ideaId);
 		model.addAttribute("idea", i);
 		return "edit.jsp";
@@ -135,7 +160,9 @@ public class MainController {
 			// form data doesn't include the creator id, so get it and set it
 			User ideaCreator = iserv.findOne(ideaId).getCreator();
 			idea.setCreator(ideaCreator);
-
+			// get the data about  the liker from the database and set it 
+			List <User> ideaLikers = iserv.findOne(ideaId).getLiked_users();
+			idea.setLiked_users(ideaLikers);
 			idea.setId(ideaId);
 			irepo.save(idea);
 			return "redirect:/dash";
