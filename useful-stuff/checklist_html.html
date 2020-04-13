@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h3>Base Project Setup (After @RestController section)</h3>
+    <hr>
+    <div class="container">
+        <input type="checkbox">
+        <label>Create a project (all lowercase no symbols)</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Put dependencies into pom.xml file</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Put settings into application.properties file</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Make sure database schema is created on workbench and name matches the one in application.properties (no
+            tables)</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>make webapp folder in src / main</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>make WEB-INF folder in src/main/webapp</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Be sure to put jsp in WEB-INF</label>
+    </div>
+    <hr>
+    <h3>Setting up backend</h3>
+    <hr>
+    <div class="container">
+        <input type="checkbox">
+        <label>Create .models, .repositories, .services by right clicking original package and creating new
+            package to keep names cohesive. e.g. com.example.demo -> com.example.demo.models</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Create Models (Don't use underscores. must be camelCase for all attributes)</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Create Repositories (findAll is probably the only one you'll need) (don't forget @Repository)</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Create Services (you only need login / registration specific functions and find one function. the rest are in repository by default) (don't forget @Service)</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Create Controller file (dont forget @Controller) </label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Import all services and repository files into the controller</label>
+    </div>
+    <hr>
+    <h3>Extra reminders</h3>
+    <hr>
+    <div class="container">
+        <input type="checkbox">
+        <label>@RequestParam only works with regular form elements not form:form</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Don't use id with @PathVariable, use something like book_id instead</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>@Valid @ModelAttribute("_") Type Variable, BindingResult result -> these must be next to each other and not separated</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Make sure form:form paths point to the correct attribute names you set in models</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Make sure form:form has the correct @ModelAttribute added from the controller</label>
+    </div>
+    <div class="container">
+        <input type="checkbox">
+        <label>Use GET/POST only. no PUT. Delete is ok, but to avoid confusion you can use GET/POST for now.</label>
+    </div>
+    <hr>
+    <h3>Other</h3>
+    <hr>
+    <div class="container">
+        <input type="checkbox">
+        <label>Make sure form:form has a model.addAttribute("key", object) on the route that renders the page, and to obtain it after it has a @ModelAttribute on the action route with the same key to obtain it.</label>
+    </div>
+
+
+</body>
+
+</html>

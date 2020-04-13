@@ -1,0 +1,2 @@
+// mac only - run this in the terminal
+scutil --set HostName "localhost"
