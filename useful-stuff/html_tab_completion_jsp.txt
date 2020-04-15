@@ -1,0 +1,7 @@
+FYI - to allow tab completion for html tags in jsp (on spring tool suite)
+1. Go to Help > Install New Software… in your Eclipse IDE
+2. Add http://download.emmet.io/eclipse/updates/ in update sites
+3. Check Emmet for Eclipse group in available plugins list, click Next button and follow the installation instructions
+4. Restart Eclipse
+5. Spring tool4 > Preferences > Emmet then make sure the "expand abbreviations by tab key" is checked and add "jsp" in "files with extension"
+For more info: https://github.com/emmetio/emmet-eclipse
